@@ -1,0 +1,52 @@
+{
+  "name": "simk-royal-desktop",
+  "version": "1.0.0",
+  "description": "SIMK Royal — Sistem Manajemen Kafe & Resto (aplikasi desktop Mac/Windows/Linux)",
+  "author": "SIMK Royal",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist:mac": "electron-builder --mac",
+    "dist:win": "electron-builder --win",
+    "dist:linux": "electron-builder --linux",
+    "dist": "electron-builder -mwl"
+  },
+  "build": {
+    "appId": "id.royal.simk",
+    "productName": "SIMK Royal",
+    "files": [
+      "main.js",
+      "preload.js",
+      "app/**/*"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "mac": {
+      "category": "public.app-category.business",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "app/assets/icon-512.png"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "app/assets/icon-512.png"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "icon": "app/assets/icon-512.png",
+      "category": "Office"
+    }
+  },
+  "devDependencies": {
+    "electron": "^31.7.7",
+    "electron-builder": "^24.13.3"
+  }
+}

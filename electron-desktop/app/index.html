@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Login SIMK ROYAL</title>
+<link rel="icon" href="assets/icon-maskable-512.png">
+<link rel="stylesheet" href="css/style.css" />
+<!-- PWA: bisa dipasang sebagai aplikasi di HP, tablet, maupun komputer (Windows/Mac/Linux) -->
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#1E4636" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="SIMK Royal" />
+<link rel="apple-touch-icon" href="assets/icon-192.png" />
+</head>
+<body>
+
+<div class="login-shell">
+  <div class="login-visual">
+    <div class="login-brand">
+      <div class="brand-mark"><i data-lucide="square-mouse-pointer"></i></div>
+      <span>SIMK ROYAL</span>
+    </div>
+    <div class="login-center">
+      <div class="login-tagline">
+        <h1>Sistem Informasi Manajemen Kasir & Operasional Resto.</h1>
+        <p>Membantu kalian dalam mengatur transaksi, stok, karyawan, sampai laporan bisnis dalam satu sistem yang praktis.</p>
+      </div>
+    </div>
+
+    <div class="login-stats">
+      <div><strong>24</strong><span>Fitur terintegrasi</span></div>
+      <div><strong>100%</strong><span>Responsif di semua perangkat</span></div>
+      <div><strong>5+</strong><span>Pembayaran digital</span></div>
+    </div>
+  </div>
+
+  <div class="login-form-wrap">
+    <div class="login-card">
+      <h2>Masuk Akun</h2>
+      <p class="sub">Silakan masuk untuk melanjutkan ke dashboard SIMK Royal.</p>
+
+      <div class="login-error" id="login-error"></div>
+
+      <form id="login-form" autocomplete="off">
+        <div class="field">
+          <label for="username">Username</label>
+          <div class="input-with-icon">
+            <i data-lucide="user"></i>
+            <input class="input-plain" type="text" id="username" name="username" placeholder="Masukkan username" required />
+          </div>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="input-with-icon">
+            <i data-lucide="lock"></i>
+            <input class="input-plain" type="password" id="password" name="password" placeholder="••••••••" required />
+            <button type="button" class="pw-toggle" id="pw-toggle" aria-label="Tampilkan password"><i data-lucide="eye"></i></button>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="login-submit" disabled>
+          <i data-lucide="log-in"></i> Masuk
+        </button>
+      </form>
+
+      <p class="auth-switch">Belum punya akun? <a href="register.html">Daftar di sini</a></p>
+    </div>
+  </div>
+</div>
+
+<div id="toast-root"></div>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script src="js/db.js"></script>
+<script src="js/store.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/ui.js"></script>
+<script>
+(async () => {
+  UI.icons();
+  await Store.init(); // buka database (IndexedDB, fallback localStorage) sebelum cek sesi
+
+  // Jika sudah login, langsung arahkan ke dashboard
+  if (Session.isLoggedIn()) {
+    window.location.href = 'app.html';
+    return;
+  }
+
+  const form = document.getElementById('login-form');
+  const errorBox = document.getElementById('login-error');
+  const submitBtn = document.getElementById('login-submit');
+  submitBtn.disabled = false;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value;
+    const result = Auth.login(username, password);
+    if (!result.ok) {
+      errorBox.textContent = result.message;
+      errorBox.style.display = 'block';
+      return;
+    }
+    window.location.href = 'app.html#dashboard';
+  });
+
+  document.getElementById('pw-toggle').addEventListener('click', () => {
+    const pw = document.getElementById('password');
+    const icon = document.querySelector('#pw-toggle i');
+    if (pw.type === 'password') { pw.type = 'text'; icon.setAttribute('data-lucide', 'eye-off'); }
+    else { pw.type = 'password'; icon.setAttribute('data-lucide', 'eye'); }
+    UI.icons();
+  });
+})();
+</script>
+
+<!-- PWA: registrasi service worker agar bisa dipasang & dipakai offline -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch((e) => console.warn('SW gagal didaftarkan:', e));
+    });
+  }
+</script>
+</body>
+</html>

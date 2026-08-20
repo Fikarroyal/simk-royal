@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Daftar Akun SIMK ROYAL</title>
+<link rel="icon" href="assets/icon-maskable-512.png">
+<link rel="stylesheet" href="css/style.css" />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#1E4636" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="SIMK Royal" />
+<link rel="apple-touch-icon" href="assets/icon-192.png" />
+</head>
+<body>
+
+<div class="login-shell">
+  <div class="login-visual">
+    <div class="login-brand">
+      <div class="brand-mark"><i data-lucide="square-mouse-pointer"></i></div>
+      <span>SIMK ROYAL</span>
+    </div>
+
+    <div class="login-center">
+      <div class="login-tagline">
+        <h1>Kelola Kasir Lebih Mudah, Bisnis Lebih Terarah.</h1>
+        <p>Kelola penjualan, pembayaran, stok, laporan, dan operasional kasir dengan lebih cepat, mudah, dan terintegrasi dalam satu sistem.</p>
+      </div>
+    </div>
+
+    <div class="login-stats">
+      <div><strong>24</strong><span>Fitur terintegrasi</span></div>
+      <div><strong>100%</strong><span>Responsif di semua perangkat</span></div>
+      <div><strong>5+</strong><span>Pembayaran digital</span></div>
+    </div>
+  </div>
+
+  <div class="login-form-wrap">
+    <div class="login-card" id="register-card">
+
+      <div id="register-form-view">
+        <h2>Daftar Akun</h2>
+        <p class="sub">Buat akun untuk bergabung mengelola SIMK Royal.</p>
+
+        <div class="login-error" id="register-error"></div>
+
+        <form id="register-form" autocomplete="off">
+          <div class="field">
+            <label for="reg-name">Nama Lengkap</label>
+            <div class="input-with-icon">
+              <i data-lucide="user"></i>
+              <input class="input-plain" type="text" id="reg-name" name="name" placeholder="Nama sesuai KTP" required />
+            </div>
+          </div>
+          <div class="field">
+            <label for="reg-username">Username</label>
+            <div class="input-with-icon">
+              <i data-lucide="at-sign"></i>
+              <input class="input-plain" type="text" id="reg-username" name="username" placeholder="Tanpa spasi" required />
+            </div>
+          </div>
+          <div class="field">
+            <label for="reg-phone">No. Telepon</label>
+            <div class="input-with-icon">
+              <i data-lucide="phone"></i>
+              <input class="input-plain" type="tel" id="reg-phone" name="phone" placeholder="08xxxxxxxxxx" required />
+            </div>
+          </div>
+          <div class="field">
+            <label for="reg-role">Daftar Sebagai</label>
+            <div class="input-with-icon">
+              <i data-lucide="briefcase"></i>
+              <select class="input-plain" id="reg-role" name="role" required style="padding:12px 0;">
+                <option value="kasir">Kasir</option>
+                <option value="staff">Staff</option>
+                <option value="manager">Manager</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="reg-password">Password</label>
+            <div class="input-with-icon">
+              <i data-lucide="lock"></i>
+              <input class="input-plain" type="password" id="reg-password" name="password" placeholder="Minimal 6 karakter" required minlength="6" />
+              <button type="button" class="pw-toggle" id="reg-pw-toggle" aria-label="Tampilkan password"><i data-lucide="eye"></i></button>
+            </div>
+          </div>
+          <div class="field">
+            <label for="reg-password2">Konfirmasi Password</label>
+            <div class="input-with-icon">
+              <i data-lucide="lock"></i>
+              <input class="input-plain" type="password" id="reg-password2" name="password2" placeholder="Ulangi password" required minlength="6" />
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block" id="register-submit" disabled>
+            <i data-lucide="user-plus"></i> Daftar Sekarang
+          </button>
+        </form>
+
+        <div class="register-note">
+          <i data-lucide="info"></i>
+          <span>Akun baru perlu disetujui administrator sebelum bisa digunakan untuk masuk ke sistem.</span>
+        </div>
+
+        <p class="auth-switch">Sudah punya akun? <a href="index.html">Masuk di sini</a></p>
+      </div>
+
+      <div id="register-success-view" class="register-success hidden">
+        <div class="success-icon"><i data-lucide="check"></i></div>
+        <h3>Registrasi Berhasil</h3>
+        <p>Akun Anda sudah tercatat dan sedang menunggu persetujuan administrator. Anda akan bisa masuk setelah akun disetujui.</p>
+        <a href="index.html" class="btn btn-primary btn-block"><i data-lucide="arrow-left"></i> Kembali ke Halaman Masuk</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="toast-root"></div>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script src="js/db.js"></script>
+<script src="js/store.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/ui.js"></script>
+<script>
+(async () => {
+  UI.icons();
+  await Store.init();
+
+  if (Session.isLoggedIn()) {
+    window.location.href = 'app.html';
+    return;
+  }
+
+  const form = document.getElementById('register-form');
+  const errorBox = document.getElementById('register-error');
+  const submitBtn = document.getElementById('register-submit');
+  submitBtn.disabled = false;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    errorBox.style.display = 'none';
+
+    const name = document.getElementById('reg-name').value.trim();
+    const username = document.getElementById('reg-username').value.trim();
+    const phone = document.getElementById('reg-phone').value.trim();
+    const role = document.getElementById('reg-role').value;
+    const password = document.getElementById('reg-password').value;
+    const password2 = document.getElementById('reg-password2').value;
+
+    if (/\s/.test(username)) {
+      errorBox.textContent = 'Username tidak boleh mengandung spasi.';
+      errorBox.style.display = 'block';
+      return;
+    }
+    if (password !== password2) {
+      errorBox.textContent = 'Konfirmasi password tidak cocok.';
+      errorBox.style.display = 'block';
+      return;
+    }
+
+    const result = Auth.register({ name, username, phone, role, password });
+    if (!result.ok) {
+      errorBox.textContent = result.message;
+      errorBox.style.display = 'block';
+      return;
+    }
+
+    document.getElementById('register-form-view').classList.add('hidden');
+    document.getElementById('register-success-view').classList.remove('hidden');
+    UI.icons();
+  });
+
+  document.getElementById('reg-pw-toggle').addEventListener('click', () => {
+    const pw = document.getElementById('reg-password');
+    const icon = document.querySelector('#reg-pw-toggle i');
+    if (pw.type === 'password') { pw.type = 'text'; icon.setAttribute('data-lucide', 'eye-off'); }
+    else { pw.type = 'password'; icon.setAttribute('data-lucide', 'eye'); }
+    UI.icons();
+  });
+})();
+</script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch((e) => console.warn('SW gagal didaftarkan:', e));
+    });
+  }
+</script>
+</body>
+</html>
