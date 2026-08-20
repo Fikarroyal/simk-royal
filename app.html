@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Dashboard SIMK ROYAL</title>
+<link rel="icon" href="assets/icon-maskable-512.png">
+<link rel="stylesheet" href="css/style.css" />
+<!-- PWA: bisa dipasang sebagai aplikasi di HP, tablet, maupun komputer (Windows/Mac/Linux) -->
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#1E4636" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="SIMK Royal" />
+<link rel="apple-touch-icon" href="assets/icon-192.png" />
+</head>
+<body>
+
+<div class="app-shell">
+
+  <div class="sidebar-overlay no-print" id="sidebar-overlay"></div>
+
+  <aside class="sidebar no-print" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark"><i data-lucide="square-mouse-pointer"></i></div>
+      <div>
+        <strong>SIMK ROYAL</strong>
+        <small id="business-name-tag">Cafe & Resto</small>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" id="sidebar-nav">
+      <div class="sidebar-section-label">Utama</div>
+      <a href="#dashboard" class="nav-item" data-module="dashboard"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+      <a href="#pos" class="nav-item" data-module="pos"><i data-lucide="shopping-cart"></i> Kasir (POS)</a>
+
+      <div class="sidebar-section-label">Produk & Meja</div>
+      <a href="#produk" class="nav-item" data-module="produk"><i data-lucide="package"></i> Produk & Kategori</a>
+      <a href="#bundling" class="nav-item" data-module="bundling"><i data-lucide="package-plus"></i> Paket Bundling</a>
+      <a href="#meja" class="nav-item" data-module="meja"><i data-lucide="armchair"></i> Meja</a>
+      <a href="#reservasi" class="nav-item" data-module="reservasi"><i data-lucide="calendar-clock"></i> Reservasi Meja</a>
+      <a href="#bahanbaku" class="nav-item" data-module="bahanbaku"><i data-lucide="wheat"></i> Bahan Baku & Resep</a>
+
+      <div class="sidebar-section-label">Orang</div>
+      <a href="#pelanggan" class="nav-item" data-module="pelanggan"><i data-lucide="users"></i> Pelanggan</a>
+      <a href="#karyawan" class="nav-item" data-module="karyawan"><i data-lucide="id-card"></i> Karyawan & Shift</a>
+      <a href="#absensi" class="nav-item" data-module="absensi"><i data-lucide="calendar-check"></i> Absensi</a>
+      <a href="#penggajian" class="nav-item" data-module="penggajian"><i data-lucide="banknote"></i> Penggajian</a>
+      <a href="#insentif" class="nav-item" data-module="insentif"><i data-lucide="trophy"></i> Insentif & Bonus</a>
+
+      <div class="sidebar-section-label">Inventori & Keuangan</div>
+      <a href="#stok" class="nav-item" data-module="stok"><i data-lucide="boxes"></i> Stok, Supplier & Beli <span class="nav-badge hidden" id="low-stock-badge">0</span></a>
+      <a href="#kontrak" class="nav-item" data-module="kontrak"><i data-lucide="file-signature"></i> Kontrak Supplier</a>
+      <a href="#limbah" class="nav-item" data-module="limbah"><i data-lucide="trash"></i> Limbah & Kerugian Stok</a>
+      <a href="#promo" class="nav-item" data-module="promo"><i data-lucide="badge-percent"></i> Promo</a>
+      <a href="#voucher" class="nav-item" data-module="voucher"><i data-lucide="gift"></i> Voucher & Gift Card</a>
+      <a href="#pengeluaran" class="nav-item" data-module="pengeluaran"><i data-lucide="wallet"></i> Pengeluaran</a>
+      <a href="#anggaran" class="nav-item" data-module="anggaran"><i data-lucide="wallet-cards"></i> Anggaran / Budget</a>
+      <a href="#transaksi" class="nav-item" data-module="transaksi"><i data-lucide="receipt"></i> Transaksi & Pembayaran</a>
+      <a href="#aset" class="nav-item" data-module="aset"><i data-lucide="wrench"></i> Aset & Maintenance</a>
+
+      <div class="sidebar-section-label">Layanan & Cabang</div>
+      <a href="#ulasan" class="nav-item" data-module="ulasan"><i data-lucide="star"></i> Ulasan & Rating</a>
+      <a href="#hadiah" class="nav-item" data-module="hadiah"><i data-lucide="award"></i> Hadiah & Penukaran Poin</a>
+      <a href="#referral" class="nav-item" data-module="referral"><i data-lucide="users-round"></i> Program Referral</a>
+      <a href="#acara" class="nav-item" data-module="acara"><i data-lucide="party-popper"></i> Booking Acara</a>
+      <a href="#tiket" class="nav-item" data-module="tiket"><i data-lucide="message-square-warning"></i> Komplain & Saran</a>
+      <a href="#pengumuman" class="nav-item" data-module="pengumuman"><i data-lucide="megaphone"></i> Pengumuman</a>
+      <a href="#cabang" class="nav-item" data-module="cabang"><i data-lucide="store"></i> Cabang / Outlet</a>
+
+      <div class="sidebar-section-label">Kepatuhan & Operasional</div>
+      <a href="#checklist" class="nav-item" data-module="checklist"><i data-lucide="clipboard-check"></i> Checklist SOP</a>
+      <a href="#suhu" class="nav-item" data-module="suhu"><i data-lucide="thermometer"></i> Log Suhu Penyimpanan</a>
+      <a href="#perizinan" class="nav-item" data-module="perizinan"><i data-lucide="file-badge"></i> Perizinan & Legal</a>
+
+      <div class="sidebar-section-label">Laporan & Sistem</div>
+      <a href="#laporan" class="nav-item" data-module="laporan"><i data-lucide="bar-chart-3"></i> Laporan</a>
+      <a href="#user" class="nav-item" data-module="user"><i data-lucide="user-cog"></i> User Management</a>
+      <a href="#pengaturan" class="nav-item" data-module="pengaturan"><i data-lucide="settings"></i> Pengaturan</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar" id="user-avatar">--</div>
+        <div class="who">
+          <strong id="user-name">-</strong>
+          <span id="user-role">-</span>
+        </div>
+      </div>
+      <button class="btn-logout" id="btn-logout"><i data-lucide="log-out"></i> Keluar</button>
+    </div>
+  </aside>
+
+  <div class="main-area">
+    <header class="topbar no-print">
+      <div class="topbar-left">
+        <button class="hamburger-btn icon-btn" id="hamburger-btn" aria-label="Buka menu"><i data-lucide="menu"></i></button>
+        <div class="topbar-title">
+          <h1 id="page-title">Dashboard</h1>
+          <p id="page-subtitle">Ringkasan operasional cafe hari ini</p>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="topbar-clock" id="topbar-clock">--:--:--</span>
+        <button class="icon-btn" id="btn-notif" aria-label="Notifikasi stok">
+          <i data-lucide="bell"></i>
+        </button>
+        <button class="icon-btn" id="btn-refresh" aria-label="Segarkan data">
+          <i data-lucide="refresh-cw"></i>
+        </button>
+      </div>
+    </header>
+
+    <main class="content" id="page-content">
+      <!-- Konten modul dirender di sini oleh router (app.js) -->
+    </main>
+  </div>
+</div>
+
+<div id="modal-root"></div>
+<div id="toast-root"></div>
+
+<!-- Pustaka eksternal -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+
+<!-- Lapisan data & util -->
+<script src="js/db.js"></script>
+<script src="js/store.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/midtrans.js"></script>
+
+<!-- Modul fitur -->
+<script src="js/modules/dashboard.js"></script>
+<script src="js/modules/pos.js"></script>
+<script src="js/modules/produk.js"></script>
+<script src="js/modules/bundling.js"></script>
+<script src="js/modules/meja.js"></script>
+<script src="js/modules/reservasi.js"></script>
+<script src="js/modules/bahanbaku.js"></script>
+<script src="js/modules/pelanggan.js"></script>
+<script src="js/modules/karyawan.js"></script>
+<script src="js/modules/absensi.js"></script>
+<script src="js/modules/penggajian.js"></script>
+<script src="js/modules/insentif.js"></script>
+<script src="js/modules/stok.js"></script>
+<script src="js/modules/kontrak.js"></script>
+<script src="js/modules/limbah.js"></script>
+<script src="js/modules/promo.js"></script>
+<script src="js/modules/voucher.js"></script>
+<script src="js/modules/pengeluaran.js"></script>
+<script src="js/modules/anggaran.js"></script>
+<script src="js/modules/transaksi.js"></script>
+<script src="js/modules/aset.js"></script>
+<script src="js/modules/ulasan.js"></script>
+<script src="js/modules/hadiah.js"></script>
+<script src="js/modules/referral.js"></script>
+<script src="js/modules/acara.js"></script>
+<script src="js/modules/tiket.js"></script>
+<script src="js/modules/pengumuman.js"></script>
+<script src="js/modules/cabang.js"></script>
+<script src="js/modules/checklist.js"></script>
+<script src="js/modules/suhu.js"></script>
+<script src="js/modules/perizinan.js"></script>
+<script src="js/modules/laporan.js"></script>
+<script src="js/modules/user.js"></script>
+<script src="js/modules/pengaturan.js"></script>
+
+<!-- Router & init -->
+<script src="js/app.js"></script>
+
+<!-- PWA: registrasi service worker agar bisa dipasang & dipakai offline -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch((e) => console.warn('SW gagal didaftarkan:', e));
+    });
+  }
+</script>
+</body>
+</html>

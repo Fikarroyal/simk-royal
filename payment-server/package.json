@@ -1,0 +1,17 @@
+{
+  "name": "simk-royal-payment-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Backend perantara aman untuk integrasi Midtrans Snap pada SIMK Royal",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "midtrans-client": "^1.3.1"
+  }
+}
