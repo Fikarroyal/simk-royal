@@ -1,4 +1,4 @@
-# SIMK Royal — Aplikasi Desktop (Mac / Windows / Linux) via Electron
+# SIMK Royal: Aplikasi Desktop (Mac / Windows / Linux) via Electron
 
 Folder ini membungkus aplikasi web SIMK Royal (folder `app/`) menjadi
 **aplikasi desktop mandiri** yang bisa di-install dan dibuka seperti aplikasi
