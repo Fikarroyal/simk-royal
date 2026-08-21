@@ -1,11 +1,11 @@
-# SIMK Royal: Aplikasi Desktop (Mac / Windows / Linux) via Electron
+# SIMK Royal Aplikasi Desktop (Mac / Windows / Linux) via Electron
 
 Folder ini membungkus aplikasi web SIMK Royal (folder `app/`) menjadi
 **aplikasi desktop mandiri** yang bisa di-install dan dibuka seperti aplikasi
-biasa — ada di Dock (Mac) / Start Menu (Windows), punya jendela sendiri,
+biasa ada di Dock (Mac) / Start Menu (Windows), punya jendela sendiri,
 dan database (IndexedDB) tetap aktif & tersimpan permanen di komputer.
 
-Sudah terbukti berjalan (paket Electron & electron-builder berhasil
+Sudah terbukti berjalan (paket Electron & electron builder berhasil
 diunduh dan diverifikasi saat project ini dibuat).
 
 ## Menjalankan di Mode Pengembangan (coba dulu tanpa build)
@@ -17,7 +17,7 @@ npm start
 ```
 
 Jendela aplikasi SIMK Royal akan langsung terbuka di komputer Anda (Mac,
-Windows, atau Linux — Electron berjalan lintas platform).
+Windows, atau Linux Electron berjalan lintas platform).
 
 ## Build Jadi Aplikasi Installer (.dmg untuk Mac, .exe untuk Windows)
 
@@ -40,7 +40,7 @@ npm run dist:win      # menghasilkan installer .exe di folder release/
 npm run dist:linux    # menghasilkan .AppImage di folder release/
 ```
 
-Hasil build ada di folder `release/` — tinggal dibagikan/diinstall.
+Hasil build ada di folder `release/` tinggal dibagikan/diinstall.
 
 > **Catatan soal Mac:** hasil `.dmg` yang dibangun tanpa Apple Developer
 > ID akan ditandai "unidentified developer" oleh macOS Gatekeeper. Ini
@@ -73,5 +73,5 @@ electron-desktop/
 
 Sama seperti versi web/PWA: menggunakan **IndexedDB** (`js/db.js`), aktif
 penuh di dalam jendela Electron (berbasis Chromium), data tersimpan permanen
-di profil aplikasi pada komputer masing-masing pengguna — tidak perlu server
+di profil aplikasi pada komputer masing-masing pengguna, tidak perlu server
 maupun koneksi internet setelah aplikasi terpasang.
