@@ -1,4 +1,4 @@
-# SIMK Royal — Payment Server (Integrasi Midtrans Snap)
+# SIMK Royal Payment Server (Integrasi Midtrans Snap)
 
 Backend kecil yang menjadi perantara aman antara aplikasi kasir SIMK Royal
 dan Midtrans. **Wajib dijalankan** kalau Anda ingin mengaktifkan pembayaran
