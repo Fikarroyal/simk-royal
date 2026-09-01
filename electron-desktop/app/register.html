@@ -175,13 +175,15 @@
     UI.icons();
   });
 
+  // SESUDAH (fix)
   document.getElementById('reg-pw-toggle').addEventListener('click', () => {
-    const pw = document.getElementById('reg-password');
-    const icon = document.querySelector('#reg-pw-toggle i');
-    if (pw.type === 'password') { pw.type = 'text'; icon.setAttribute('data-lucide', 'eye-off'); }
-    else { pw.type = 'password'; icon.setAttribute('data-lucide', 'eye'); }
-    UI.icons();
+  const pw = document.getElementById('password');
+  const icon = document.querySelector('#pw-toggle i, #pw-toggle svg');   // ← ditambah ", #pw-toggle svg"
+  if (pw.type === 'password') { pw.type = 'text'; icon.setAttribute('data-lucide', 'eye-off'); }
+  else { pw.type = 'password'; icon.setAttribute('data-lucide', 'eye'); }
+  UI.icons();
   });
+  
 })();
 </script>
 
